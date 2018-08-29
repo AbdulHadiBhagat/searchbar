@@ -11,13 +11,14 @@ class searchApp  extends StatefulWidget {
 
 class searchAppState extends State<searchApp> {
 
-  
+  String temp = "";
   void hoja(){
     setState(() {
           for(int i=0;i<list.length;i++){
           startingdata += "${i+1} name : ${list[i].name} contactNo : ${list[i].contactNo} \n";
                             }
         });
+        temp = startingdata;
     
   }
   @override
@@ -62,7 +63,14 @@ class searchAppState extends State<searchApp> {
                 },
                 onSubmitted: (String text){
                     setState(() {
-                        search = text;    
+                        search = text;
+                        if(search == "")
+                        {
+                            setState(() {
+                                        startingdata = temp;
+                                                        });
+                        }
+                        textEditingController.clear();    
                                         });
                 },
 
